@@ -13,7 +13,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
 # Load dataset
-df = pd.read_csv("../data/sample_data.csv" if Path("../data/sample_data.csv").exists() else "data/sample_data.csv")
+df = pd.read_csv("../data/credit_risk_dataset.csv" if Path("../data/credit_risk_dataset.csv").exists() else "data/sample_data.csv")
 if "target" not in df.columns:
     raise ValueError("data/sample_data.csv must contain a 'target' column")
 
