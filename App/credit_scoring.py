@@ -25,7 +25,7 @@ st.set_page_config(page_title="Credit Scoring — Business Edition", layout="wid
 
 # ---------------- Helpers ----------------
 @st.cache_data
-def load_default_data(path: str = "data/sample_data.csv") -> pd.DataFrame:
+def load_default_data(path: str = "data/credit_risk_dataset.csv") -> pd.DataFrame:
     p = Path(path)
     if p.exists():
         return pd.read_csv(p)
