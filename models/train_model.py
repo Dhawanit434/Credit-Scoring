@@ -13,9 +13,27 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
 # Load dataset
-df = pd.read_csv("../data/credit_risk_dataset.csv" if Path("../data/credit_risk_dataset.csv").exists() else "data/sample_data.csv")
+from pathlib import Path
+import pandas as pd
+
+# Define the paths
+main_file = Path("../data/credit_risk_dataset.csv")
+sample_file = Path("data/sample_data.csv")
+
+# Load the appropriate file
+if main_file.exists():
+    df = pd.read_csv(main_file)
+    print(f"Loaded main dataset: {main_file}")
+elif sample_file.exists():
+    df = pd.read_csv(sample_file)
+    print(f"Main dataset not found. Loaded sample dataset: {sample_file}")
+else:
+    raise FileNotFoundError("Neither main nor sample dataset found.")
+
+# Ensure target column exists
 if "target" not in df.columns:
-    raise ValueError("data/sample_data.csv must contain a 'target' column")
+    raise ValueError("The loaded dataset must contain a 'target' column")
+
 
 X = df.drop(columns=["target"])
 y = df["target"].astype(int)
